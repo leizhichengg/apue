@@ -1,0 +1,25 @@
+/*************************************************************************
+	> File Name: 4_8.c
+	> Author: withlzc
+	> Mail: withlzc@163.com 
+	> Created Time: Mon 15 Oct 2018 04:08:53 PM CST
+ ************************************************************************/
+
+#include"apue.h"
+#include"error.h"
+#include<fcntl.h>
+
+int main(int argc, char *argv[])
+{
+	if (argc != 2)
+		err_quit("usage: a.out <pathname>");
+	if (access(argv[1], R_OK) < 0)
+		err_ret("access error for %s", argv[1]);
+	else
+		printf("read access OK\n");
+	if (open(argv[1], O_RDONLY) < 0)
+		err_ret("open error for %s", argv[1]);
+	else
+		printf("open for reading OK\n");
+	exit(0);
+}
